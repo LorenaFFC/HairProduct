@@ -1,0 +1,151 @@
+﻿body {
+    
+    overflow: hidden;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.left.carousel-control,
+.right.carousel-control {
+    background-image: none;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.navbar-brand {
+    background: url('../images/logo.png');
+    width: 215px;
+    height: 55px;
+}
+
+.navbar-inverse {
+    background-color: #f8965d;
+    border-color: white;
+}
+
+.row-center {
+    display: flex;
+    align-items: center;
+}
+
+.img-produto-carrossel {
+    width:200px;
+    height: 230px;
+}
+
+.img-produto-carrinho {
+    height: 120px;
+    filter: drop-shadow(2px 2px 2px #ccc);
+}
+
+.linha-produto {
+    margin: 20px;
+}
+
+.produto-nome {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.produto-footer {
+    max-height: 140px;
+}
+
+
+.carousel-item-next, .carousel-item-prev, .carousel-item.active {
+    display: flex !important;
+}
+
+.panel-horizontal .panel-heading {
+    float: left;
+    width: 19%;
+    padding: 0;
+    border-bottom: 0;
+    border-right: 1px solid transparent;
+    border-top-right-radius: 0;
+    margin-bottom: 0;
+}
+.panel-footer produto-footer {
+    padding: 15px 5px 10px;
+    position: absolute;
+}
+
+.panel-horizontal .panel-body {
+    float: right;
+    margin: 0 0 15px 0;
+    padding-bottom: 0;
+    width: 80%;
+    padding: 0;
+}
+.footer {
+    font-size: 15px;
+    color: #2c2c2c;
+    font-weight: 400;
+    min-height: 0;
+    height: auto;
+    white-space: normal;
+    text-align: center;
+}
+.teste {
+    background: 0 0;
+    color: #000;
+    border: none;
+    font-size: 1.0em;
+    font-weight: 400;
+    top: 5px;
+    padding: 0 15px;
+    height: 45px;
+}
+.menu-primeiro-nivel {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: Poppins,sans-serif;
+    background-color: aquamarine;
+    white-space: nowrap;
+    display: block;
+    line-height: 1.35em;
+    padding: 4px 20px;
+    text-decoration: none;
+}
+.item-menu{
+    font-size:x-large;
+}
+.form-teste {
+    border: 1px solid #ddd;
+    border-color: navy;
+    padding: 10px;
+    margin: 30px;
+    border-radius: 10px
+}
