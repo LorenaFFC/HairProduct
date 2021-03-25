@@ -68,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\script.js" />
-    <Content Include="ProductRegistration.aspx" />
     <Content Include="Products.aspx" />
     <Content Include="RegistrarProduto.aspx" />
     <Content Include="root\imagens\Anterior.png" />
@@ -103,15 +102,9 @@
   <ItemGroup>
     <Compile Include="ado\Connection.cs" />
     <Compile Include="ado\OperacoesBD.cs" />
+    <Compile Include="Entities\Carrinho.cs" />
     <Compile Include="Entities\Imagem.cs" />
     <Compile Include="Entities\Produto.cs" />
-    <Compile Include="ProductRegistration.aspx.cs">
-      <DependentUpon>ProductRegistration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ProductRegistration.aspx.designer.cs">
-      <DependentUpon>ProductRegistration.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Products.aspx.cs">
       <DependentUpon>Products.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

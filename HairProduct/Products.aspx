@@ -6,60 +6,48 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="border-top: solid; border-color: white">
             <ul class="navbar-nav mr-auto mt-3 mt-lg-2">
-                <li >
-                    <img src="https://i.pinimg.com/originals/c0/3c/4d/c03c4d0870e741308eef7da942691498.png" style="height:60px; width:80px"  />
-                </li>
-                <li class="nav-item active" style="margin-left:50px">
-                    <div class="form-group">
-                       
-                        <asp:DropDownList ID="filtro" runat="server" class="form-control">
-                            <asp:ListItem Value="">Categoria </asp:ListItem>
-                            <asp:ListItem Value="Hidratação"></asp:ListItem>
-                            <asp:ListItem Value="Nutrição"></asp:ListItem>
-                            <asp:ListItem Value="Reconstrução"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </li>
-                <li class="nav-item active" style="margin-left:30px">
-                    <div class="form-group">
-                       
-                        <asp:DropDownList ID="DropDownList1" runat="server" class="form-control">
-                            <asp:ListItem Value="">Marca </asp:ListItem>
-                            <asp:ListItem Value="Hidratação"></asp:ListItem>
-                            <asp:ListItem Value="Nutrição"></asp:ListItem>
-                            <asp:ListItem Value="Reconstrução"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </li>
-                <li class="nav-item active" style="margin-left:50px;margin-right:50px">
-                    <div class="form-group">
-                       
-                        <asp:DropDownList ID="DropDownList2" runat="server" class="form-control">
-                            <asp:ListItem Value="">Produto </asp:ListItem>
-                            <asp:ListItem Value="Hidratação"></asp:ListItem>
-                            <asp:ListItem Value="Nutrição"></asp:ListItem>
-                            <asp:ListItem Value="Reconstrução"></asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </li>
                 <li>
-                    <div class="input-group">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <img src="https://i.pinimg.com/originals/c0/3c/4d/c03c4d0870e741308eef7da942691498.png" style="height: 60px; width: 80px" />
+                </li>
+                <li class="nav-item active" style="margin-left: 50px">
+                    <div class="form-group">
+                        <asp:DropDownList class="form-control" ID="CategoriaFiltro" runat="server" DataSourceID="filtroCategoria" DataTextField="Categoria" DataValueField="Categoria">
+                        </asp:DropDownList>
+                        <asp:SqlDataSource ID="filtroCategoria" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
+                            SelectCommand="SELECT DISTINCT [Categoria] FROM [PRODUTOS]"></asp:SqlDataSource>
+                    </div>
+
+                </li>
+                <li class="nav-item active" style="margin-left: 30px">
+                    <div class="form-group">
+
+                        <asp:DropDownList class="form-control" ID="MARCAfiltro" runat="server" DataSourceID="filtroMarca" DataTextField="Marca" DataValueField="Marca">
+                        </asp:DropDownList>
+
+                        <asp:SqlDataSource ID="filtroMarca" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
+                            SelectCommand="SELECT DISTINCT [Marca] FROM [PRODUTOS]"></asp:SqlDataSource>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="input-group" style="margin-left: 50px">
+                        <asp:TextBox ID="txt_nomeproduto" runat="server" class="form-control mr-sm-2" placeholder="Nome Produto" aria-label="Search"></asp:TextBox>
                         <div class="input-group-append" id="button-addon4">
-                            <button class="btn btn-outline-success  mr-sm-4" type="submit">Search</button>
+                            <asp:Button ID="BotaoFiltro" class="btn btn-outline-success  mr-sm-4" runat="server" OnClick="Btn_FiltrarProdutos" Text="Filtrar" />
                         </div>
                     </div>
 
                 </li>
             </ul>
         </div>
+
     </nav>
 
-    <h1 class="titulo">PRODUCTS    </h1>
+    <h1 class="titulo">PRODUCTS    
+    </h1>
 
     <div class="container">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -74,13 +62,20 @@
                                     </td>
                                 </tr>
                                 <tr style="align-items: center">
-                                    <td class="produto-nome"><%#Eval("Nome") %>
-                                        <h4><strong>R$ <%#Eval("Preco") %></strong></h4>
+                                   <td class="produto-nome">
+                                        <asp:Label ID="Lbl_NomeProduto" runat="server" Text='<%#Eval("Nome") %>'></asp:Label>
+                                        <asp:Label ID="Lbl_PrecoProduto" runat="server" Text='<%#Eval("Preco") %>'></asp:Label>
+                                        <asp:Button ID="BTN_AdicionarCarrinho" runat="server" Text="Adicionar" class="btn btn-success" OnClick="BTN_AdicionarCarrinho_Click"  />
                                     </td>
                                 </tr>
                             </table>
                         </ItemTemplate>
                     </asp:Repeater>
+
+
+
+
+
 
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                         <img src="root/imagens/Anterior.png" style="width: 50px; height: 50px">
@@ -105,8 +100,10 @@
                                     <asp:Literal ID="tablebreak" runat="server"></asp:Literal>
                                 </tr>
                                 <tr>
-                                    <td class="produto-nome"><%#Eval("Nome") %>
-                                        <h4><strong>R$ <%#Eval("Preco") %></strong></h4>
+                                    <td class="produto-nome">
+                                        <asp:Label ID="Lbl_NomeProduto" runat="server" Text='<%#Eval("Nome") %>'></asp:Label>
+                                        <asp:Label ID="Lbl_PrecoProduto" runat="server" Text='<%#Eval("Preco") %>'></asp:Label>
+                                        <asp:Button ID="BTN_AdicionarCarrinho" runat="server" Text="Adicionar" class="btn btn-success" OnClick="BTN_AdicionarCarrinho_Click"  />
                                     </td>
                                 </tr>
                         </ItemTemplate>

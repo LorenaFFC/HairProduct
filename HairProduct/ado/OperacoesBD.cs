@@ -1,6 +1,7 @@
 ﻿using HairProduct.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -34,5 +35,70 @@ namespace HairProduct.ado
             Connection.ExecuteNonQuery(query, parameterList);
         }
 
+        public void InsercaoBD_Carrinho(Carrinho carrinho)
+        {
+            string query = "INSERT INTO SalesProducts.dbo.Carrinho (Produto, Preco, Quantidade) VALUES (@Produto,@Preco, @Quantidade) ";
+
+            SqlParameter[] parameterList = { new SqlParameter("@Produto", carrinho.Produto),
+                                             new SqlParameter("@Preco", carrinho.Preco),
+                                              new SqlParameter("@Quantidade", carrinho.Quantidade)};
+
+            Connection.ExecuteNonQuery(query, parameterList);
+        }
+
+        public DataSet RetornaProdutosFiltrados(string categoria, string marca, string nome)
+        {
+            string query = "SalesProducts.dbo.Filter_Produtos";
+            SqlCommand com = new SqlCommand(query, Connection.GetSqlConnection());
+            com.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param = com.CreateParameter();
+            param.ParameterName = "@nomeCategoria";
+            param.Value = categoria;
+            param.DbType = DbType.String;
+            com.Parameters.Add(param);
+
+            param = com.CreateParameter();
+            param.ParameterName = "@nomeMarca";
+            param.Value = marca;
+            param.DbType = DbType.String;
+            com.Parameters.Add(param);
+
+            param = com.CreateParameter();
+            param.ParameterName = "@nomeProduto";
+            param.Value = nome;
+            param.DbType = DbType.String;
+            com.Parameters.Add(param);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            DataSet dset = new DataSet();
+            adapter.Fill(dset, "t1");
+            var result = com.ExecuteReader();
+            return dset;
+
+            /*PROCEDURE CRIADA:
+             use SalesProducts
+                go
+                CREATE PROCEDURE Filter_Produtos
+                @nomeCategoria VARCHAR(MAX),
+                @nomeMarca	   VARCHAR(MAX),
+                @nomeProduto VARCHAR(MAX)
+                AS
+                SELECT 
+	                NOME, 
+	                PRECO,
+	                IM.Url 
+                FROM SalesProducts.dbo.Images IM 
+                INNER JOIN SalesProducts.dbo.PRODUTOS  PM on ( IM.Nome = PM.Produto AND IM.Url = PM.Url)
+                WHERE 
+	                1=1
+	                AND PM.CATEGORIA = @nomeCategoria
+	                AND PM.MARCA = @nomeMarca
+	                AND PM.PRODUTO like '%' + @nomeProduto + '%';
+                RETURN 
+                GO
+                      */
+        }
     }
 }
