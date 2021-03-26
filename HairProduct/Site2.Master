@@ -4,35 +4,25 @@
 
 <html>
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
+        <link rel="stylesheet" type="text/css" href="root/StyleSite2.css" />
     </asp:ContentPlaceHolder>
-
-    <link rel="stylesheet" type="text/css" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 </head>
 <body>
-  
+    <form id="form1" runat="server">
+        <div >
+    
+            
+    <div class="imagem">
+        <img class="imagemFormulario" src="root/imagens/Capa/templateformul.jfif" alt="logo do site Maujor" />
+    </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="border-top:solid; border-color:white">
-            <ul class="navbar-nav mr-auto mt-3 mt-lg-2">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0" runat="server">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
         </div>
-    </nav>
-
-    <asp:ContentPlaceHolder ID="ContentPlaceHolder6" runat="server">
-    </asp:ContentPlaceHolder>
-
+    </form>
 </body>
 </html>

@@ -69,6 +69,24 @@ namespace HairProduct
         protected global::System.Web.UI.WebControls.Button BotaoFiltro;
 
         /// <summary>
+        /// Controle ImageButton2.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
+
+        /// <summary>
+        /// Controle lit_qtd.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lit_qtd;
+
+        /// <summary>
         /// Controle Repeater1.
         /// </summary>
         /// <remarks>

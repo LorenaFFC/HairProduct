@@ -71,10 +71,17 @@
     <Content Include="Products.aspx" />
     <Content Include="RegistrarProduto.aspx" />
     <Content Include="root\imagens\Anterior.png" />
+    <Content Include="root\imagens\botoes\cancel.png" />
+    <Content Include="root\imagens\botoes\delete.png" />
+    <Content Include="root\imagens\botoes\edit.png" />
+    <Content Include="root\imagens\botoes\save.png" />
     <Content Include="root\imagens\Capa\capa.jpg" />
     <Content Include="root\imagens\Capa\capa2.jpg" />
+    <Content Include="root\imagens\Capa\carrinho.png" />
     <Content Include="root\imagens\Capa\logo1.png" />
     <Content Include="root\imagens\Capa\logo2.png" />
+    <Content Include="root\imagens\Capa\shopping.jpg" />
+    <Content Include="root\imagens\Capa\templateformul.jfif" />
     <Content Include="root\imagens\img_1.png" />
     <Content Include="root\imagens\img_10.png" />
     <Content Include="root\imagens\img_11.png" />
@@ -97,6 +104,8 @@
     <Content Include="root\imagens\img_9.png" />
     <Content Include="root\imagens\Proximo.png" />
     <Content Include="root\Style.css" />
+    <Content Include="root\StyleSite2.css" />
+    <Content Include="ShoppingCart.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +128,13 @@
     </Compile>
     <Compile Include="RegistrarProduto.aspx.designer.cs">
       <DependentUpon>RegistrarProduto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShoppingCart.aspx.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShoppingCart.aspx.designer.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>

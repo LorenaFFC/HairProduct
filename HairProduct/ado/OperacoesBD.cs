@@ -46,6 +46,7 @@ namespace HairProduct.ado
             Connection.ExecuteNonQuery(query, parameterList);
         }
 
+       
         public DataSet RetornaProdutosFiltrados(string categoria, string marca, string nome)
         {
             string query = "SalesProducts.dbo.Filter_Produtos";
@@ -99,6 +100,11 @@ namespace HairProduct.ado
                 RETURN 
                 GO
                       */
+        }
+
+        public void AlterQtdeCarrinho(int quantidade)
+        {
+
         }
     }
 }

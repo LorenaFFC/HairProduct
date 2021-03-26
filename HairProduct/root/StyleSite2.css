@@ -1,0 +1,28 @@
+﻿body {
+    background-color: #311990;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+}
+
+.imagemFormulario {
+    position: relative;
+    height: 100vh;
+    width: 50vw;
+
+}
+.imagem {
+    width: 50%;
+    display: inline-block;
+  
+}
+.formulario {
+    margin-right:9%;
+    margin-top:9%;
+    align-items: center;
+    background-color: white;
+    display:block;
+    text-align: center;
+  
+    float: right;
+}

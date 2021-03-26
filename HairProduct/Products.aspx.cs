@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,12 +13,14 @@ namespace HairProduct
 {
     public partial class Products : System.Web.UI.Page
     {
+        string qtd = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 add_Nomes();
                 CarregaProdutos();
+               
             }
         }
 
@@ -34,10 +37,16 @@ namespace HairProduct
         }
         protected void Btn_FiltrarProdutos(object sender, EventArgs e)
         {
+            
             string nomeCategoria = CategoriaFiltro.SelectedValue.ToString();
             string nomeMarca = MARCAfiltro.SelectedValue.ToString();
             string nomeProduto = txt_nomeproduto.Text;
-           
+
+            if (nomeCategoria==".Selecione Categoria." || nomeMarca== ".Selecione Categoria.")
+            {
+                nomeCategoria = null;
+                nomeMarca = null;
+            }
             Connection.GetSqlConnection();
             OperacoesBD bd = new OperacoesBD();
      
@@ -45,18 +54,21 @@ namespace HairProduct
             Repeater1.DataBind();
 
             Repeater2.Visible = false;
+
+
+
         }
 
         protected void CarregaProdutos()
-        {
-            string querytop = "select TOP 5 NOME, PRECO,IM.Url FROM SalesProducts.dbo.Images IM INNER JOIN SalesProducts.dbo.PRODUTOS  PM on ( IM.Nome = PM.Produto AND IM.Url = PM.Url) ORDER BY IM.Id ASC;";
-            string query = "SELECT NOME, PRECO, IM.Url FROM SalesProducts.dbo.Images IM INNER JOIN SalesProducts.dbo.PRODUTOS  PM on ( IM.Nome = PM.Produto AND IM.Url = PM.Url) where IM.id not in('1','2','3','4','5')";
+        {//where IM.id not in('1','2','3','4','5')
+            string querytop = "select TOP 5 NOME, PRECO,IM.Url FROM SalesProducts.dbo.Images IM INNER JOIN SalesProducts.dbo.PRODUTOS  PM on ( IM.Nome = PM.Produto AND IM.Url = PM.Url) ;";
+            string query = "SELECT NOME, PRECO, IM.Url FROM SalesProducts.dbo.Images IM INNER JOIN SalesProducts.dbo.PRODUTOS  PM on ( IM.Nome = PM.Produto AND IM.Url = PM.Url)where IM.id not in('1','2','3','4','5') ";
             Connection.GetSqlConnection();
             DataTable dttop = Connection.ExecuteQuery(querytop);
             DataTable dt = Connection.ExecuteQuery(query);
             Repeater1.DataSource = dttop;
             Repeater1.DataBind();
-            Repeater2.DataSource = dt;
+           Repeater2.DataSource = dt;
             Repeater2.DataBind();
         }
 
@@ -75,13 +87,31 @@ namespace HairProduct
             Carrinho carrinho = new Carrinho();
             carrinho.Produto = nome_Produto;
             carrinho.Preco = preco_Produto;
-            carrinho.Quantidade = 0;
+            carrinho.Quantidade = 1;
 
             // funcao para adicionar no BD
             operacoesBD.InsercaoBD_Carrinho(carrinho);
+            lit_qtd.Text = qtdProdutos();
         }
 
-      
+        protected string  qtdProdutos()
+        {
+            string query_Qtd_Produtos = "select Quantidade  from SalesProducts.dbo.Carrinho";
+            Connection.GetSqlConnection();
+            DataTable dttop = Connection.ExecuteQuery(query_Qtd_Produtos);
+
+            object qtd_Total;
+            qtd_Total = dttop.Compute("Sum(Quantidade)", string.Empty);
+
+            return qtd_Total.ToString();
+        }
+        
+   
+
+        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("ShoppingCart.aspx");
+        }
     }
 }
 

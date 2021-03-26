@@ -41,17 +41,28 @@
                     </div>
 
                 </li>
+                <li>
+                    <div class="cart-icon">
+                        <asp:ImageButton ID="ImageButton2" runat="server" OnClick="ImageButton2_Click" ImageUrl="~/root/imagens/Capa/carrinho.png" Style="width: 50px; height: 50px; display: block; margin-left: 100px;" />
+                    </div>
+                    <div Style="margin-left: 150px; border-style: solid;border-width: 1px; border-radius: 200px; border-color:red; color:darkred">
+                        <asp:Literal ID="lit_qtd" runat="server"  />
+                    </div>
+                </li>
+
             </ul>
         </div>
 
     </nav>
 
     <h1 class="titulo">PRODUCTS    
+        
     </h1>
 
     <div class="container">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
+
                 <div class="carousel-item active">
                     <asp:Repeater ID="Repeater1" runat="server">
                         <ItemTemplate>
@@ -62,10 +73,10 @@
                                     </td>
                                 </tr>
                                 <tr style="align-items: center">
-                                   <td class="produto-nome">
+                                    <td class="produto-nome">
                                         <asp:Label ID="Lbl_NomeProduto" runat="server" Text='<%#Eval("Nome") %>'></asp:Label>
                                         <asp:Label ID="Lbl_PrecoProduto" runat="server" Text='<%#Eval("Preco") %>'></asp:Label>
-                                        <asp:Button ID="BTN_AdicionarCarrinho" runat="server" Text="Adicionar" class="btn btn-success" OnClick="BTN_AdicionarCarrinho_Click"  />
+                                        <asp:Button ID="BTN_AdicionarCarrinho" runat="server" Text="Adicionar" class="btn btn-success" OnClick="BTN_AdicionarCarrinho_Click" />
                                     </td>
                                 </tr>
                             </table>
@@ -86,9 +97,8 @@
                         <span class="sr-only">Próximo</span>
                     </a>
                 </div>
-
                 <div class="carousel-item">
-                    <asp:Repeater ID="Repeater2" runat="server">
+                    <asp:Repeater ID="Repeater2" runat="server" EnableViewState="true">
                         <ItemTemplate>
                             <table>
                                 <tr>
@@ -103,7 +113,7 @@
                                     <td class="produto-nome">
                                         <asp:Label ID="Lbl_NomeProduto" runat="server" Text='<%#Eval("Nome") %>'></asp:Label>
                                         <asp:Label ID="Lbl_PrecoProduto" runat="server" Text='<%#Eval("Preco") %>'></asp:Label>
-                                        <asp:Button ID="BTN_AdicionarCarrinho" runat="server" Text="Adicionar" class="btn btn-success" OnClick="BTN_AdicionarCarrinho_Click"  />
+                                        <asp:Button ID="BTN_AdicionarCarrinho" runat="server" Text="Adicionar" class="btn btn-success" OnClick="BTN_AdicionarCarrinho_Click" />
                                     </td>
                                 </tr>
                         </ItemTemplate>
