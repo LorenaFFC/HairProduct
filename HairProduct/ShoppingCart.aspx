@@ -87,7 +87,7 @@
         <div style="background-color: #311990">
             <br />
             <asp:Button runat="server" Text="Continuar Comprando" class="btn btn-light"  OnClick="ContinuarComprando_Click"/>
-            <asp:Button runat="server" Text="Finalizar Compra" class="btn btn-success" />
+            <asp:Button runat="server" Text="Finalizar Compra" class="btn btn-success" OnClick="FinalizarCompra_Click" />
         </div>
     </div>
 

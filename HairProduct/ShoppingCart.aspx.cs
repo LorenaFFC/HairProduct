@@ -96,5 +96,15 @@ namespace HairProduct
         {
             Response.Redirect("Products.aspx");
         }
+
+        protected void FinalizarCompra_Click(object sender, EventArgs e)
+        {
+            string query = "TRUNCATE TABLE SalesProducts.dbo.CARRINHO;";
+            SqlCommand command = new SqlCommand(query, Connection.GetSqlConnection());
+            command.ExecuteNonQuery();
+            GridView1.EditIndex = -1;
+            GridView1_SelectedIndexChanged();
+            lit_value_total.Text = Subtotal();
+        }
     }
 }

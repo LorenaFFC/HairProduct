@@ -55,9 +55,25 @@
 
     </nav>
 
-    <h1 class="titulo">PRODUCTS    
-        
-    </h1>
+    <div style="text-align:center; 
+position:relative; 
+padding:20px 0;
+font-family: Poppins,sans-serif;
+                text-transform: uppercase;
+                
+                font-family: Poppins,sans-serif;
+                ">
+        <strong>
+            <h2 style="font-size: 20px;
+                       font-weight: 500;
+                       color: #2c2c2c;">Super Ofertas
+                <small style="color: #868686;
+                             font-size: 16px;
+                              margin-left: 10px;">Produtos com preços Imperdíveis</small>
+            </h2>
+        </strong>
+    </div>
+   
 
     <div class="container">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
