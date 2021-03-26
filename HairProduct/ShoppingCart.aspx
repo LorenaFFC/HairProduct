@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site2.Master" AutoEventWireup="true" CodeBehind="ShoppingCart.aspx.cs" Inherits="HairProduct.ShoppingCart" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" type="text/css" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
     <link rel="stylesheet" type="text/css" href="root/StyleSite2.css" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -77,8 +80,18 @@
         </asp:GridView>
         <div>
             <span>Subtotal: R$</span>
-            <strong><asp:Literal ID="lit_value_total" runat="server"  /> </strong>
+            <strong>
+                <asp:Literal ID="lit_value_total" runat="server" />
+            </strong>
+        </div>
+        <div style="background-color: #311990">
+            <br />
+            <asp:Button runat="server" Text="Continuar Comprando" class="btn btn-light"  OnClick="ContinuarComprando_Click"/>
+            <asp:Button runat="server" Text="Finalizar Compra" class="btn btn-success" />
         </div>
     </div>
+
+
+
 
 </asp:Content>

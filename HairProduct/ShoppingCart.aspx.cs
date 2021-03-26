@@ -91,5 +91,10 @@ namespace HairProduct
 
             return qtd_Total.ToString();
         }
+
+        protected void ContinuarComprando_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Products.aspx");
+        }
     }
 }
