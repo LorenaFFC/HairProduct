@@ -28,10 +28,18 @@
                     <div class="form-group">
                         <asp:Label ID="Marca" runat="server" Text="Marca"></asp:Label>
                         <asp:TextBox ID="txt_Marca" runat="server" class="form-control"></asp:TextBox>
+                        
                     </div>
                     <div class="form-group">
                         <asp:Label ID="Preco" runat="server" Text="Preço"></asp:Label>
                         <asp:TextBox ID="txt_Preco" runat="server" class="form-control"></asp:TextBox>
+                    </div>
+                    <div >
+                        <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+                            <asp:ListItem Text="Lançamento" Value="Lançamento"></asp:ListItem>
+                            <asp:ListItem Text="Ofertas" Value="Ofertas"> </asp:ListItem>
+                            <asp:ListItem Text="Destaques" Value="Destaques"> </asp:ListItem>
+                        </asp:RadioButtonList>
                     </div>
                     <div class="form-group">
                         <asp:Label ID="Imagem_Produto" runat="server" Text="Foto Produto"></asp:Label>

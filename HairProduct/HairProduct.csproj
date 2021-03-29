@@ -70,6 +70,7 @@
     <Content Include="js\script.js" />
     <Content Include="Products.aspx" />
     <Content Include="RegistrarProduto.aspx" />
+    <Content Include="RegistrarProdutoArquivo.aspx" />
     <Content Include="root\imagens\Anterior.png" />
     <Content Include="root\imagens\botoes\cancel.png" />
     <Content Include="root\imagens\botoes\delete.png" />
@@ -129,6 +130,13 @@
     <Compile Include="RegistrarProduto.aspx.designer.cs">
       <DependentUpon>RegistrarProduto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarProdutoArquivo.aspx.cs">
+      <DependentUpon>RegistrarProdutoArquivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarProdutoArquivo.aspx.designer.cs">
+      <DependentUpon>RegistrarProdutoArquivo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ShoppingCart.aspx.cs">
       <DependentUpon>ShoppingCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -152,6 +160,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Files\ModeloPlanilha.xlsx" />
     <None Include="packages.config" />
     <Content Include="Site1.Master" />
     <Content Include="Site2.Master" />

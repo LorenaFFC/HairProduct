@@ -14,11 +14,12 @@ namespace HairProduct.ado
 
         public void InsercaoBD_Produto(Produto produto)
         {
-            string query = "INSERT INTO SalesProducts.dbo.PRODUTOS (Produto,Categoria,Marca,Preco,Url) VALUES (@Produto,@Categoria,@Marca,@Preco,@Url)";
+            string query = "INSERT INTO SalesProducts.dbo.PRODUTOS (Produto,Categoria,Marca,Status,Preco,Url) VALUES (@Produto,@Categoria,@Marca, @Status, @Preco,@Url)";
 
             SqlParameter[] parameterList = { new SqlParameter("@Produto", produto.Nome),
                                              new SqlParameter("@Categoria", produto.Categoria),
                                              new SqlParameter("@Marca", produto.Marca),
+                                             new SqlParameter("@Marca", produto.Status),
                                              new SqlParameter("@Preco", produto.Preco),
                                              new SqlParameter("@Url", produto.Url) };
             Connection.ExecuteNonQuery(query, parameterList);
@@ -47,7 +48,7 @@ namespace HairProduct.ado
         }
 
        
-        public DataSet RetornaProdutosFiltrados(string categoria, string marca, string nome)
+        public DataSet RetornaProdutosFiltrados(string categoria, string marca, string status, string nome)
         {
             string query = "SalesProducts.dbo.Filter_Produtos";
             SqlCommand com = new SqlCommand(query, Connection.GetSqlConnection());
@@ -66,10 +67,18 @@ namespace HairProduct.ado
             com.Parameters.Add(param);
 
             param = com.CreateParameter();
+            param.ParameterName = "@nomeStatus";
+            param.Value = status;
+            param.DbType = DbType.String;
+            com.Parameters.Add(param);
+
+            param = com.CreateParameter();
             param.ParameterName = "@nomeProduto";
             param.Value = nome;
             param.DbType = DbType.String;
             com.Parameters.Add(param);
+
+          
 
             SqlDataAdapter adapter = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
@@ -78,27 +87,31 @@ namespace HairProduct.ado
             var result = com.ExecuteReader();
             return dset;
 
-            /*PROCEDURE CRIADA:
+            /* PROCEDURE CRIADA:
              use SalesProducts
                 go
                 CREATE PROCEDURE Filter_Produtos
                 @nomeCategoria VARCHAR(MAX),
                 @nomeMarca	   VARCHAR(MAX),
-                @nomeProduto VARCHAR(MAX)
+                @nomeProduto VARCHAR(MAX),
+				@nomeStatus VARCHAR(MAX)
                 AS
                 SELECT 
 	                NOME, 
 	                PRECO,
 	                IM.Url 
                 FROM SalesProducts.dbo.Images IM 
-                INNER JOIN SalesProducts.dbo.PRODUTOS  PM on ( IM.Nome = PM.Produto AND IM.Url = PM.Url)
+                INNER JOIN SalesProducts.dbo.PRODUTOS  PM on (IM.Nome = PM.Produto AND IM.Url = PM.Url)
                 WHERE 
 	                1=1
-	                AND PM.CATEGORIA = @nomeCategoria
-	                AND PM.MARCA = @nomeMarca
-	                AND PM.PRODUTO like '%' + @nomeProduto + '%';
+	                AND (@nomeCategoria IS NULL OR(PM.CATEGORIA = @nomeCategoria))
+	                AND (@nomeMarca IS NULL OR (PM.MARCA = @nomeMarca)) 
+	                AND (@nomeProduto IS NULL OR (PM.PRODUTO like '%' + @nomeProduto + '%'))
+					AND (@nomeStatus IS NULL OR (PM.STATUS = @nomeStatus));
                 RETURN 
                 GO
+
+
                       */
         }
 

@@ -19,8 +19,8 @@ namespace HairProduct
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string Message = "asas";
-            Response.Write("<script> alert('" + img_Produto.PostedFile.FileName.ToString() + "'); </script>");
+            //string Message = "asas";
+            //Response.Write("<script> alert('" + RadioButtonList1.SelectedValue.ToString() + "'); </script>");
             CadastraProduto();
         }
 
@@ -32,6 +32,7 @@ namespace HairProduct
             prod.Nome = txt_Produto.Text;
             prod.Categoria = Categoria.SelectedValue.ToString();
             prod.Marca = txt_Marca.Text;
+            prod.Status = RadioButtonList1.SelectedValue.ToString();
             prod.Preco = txt_Preco.Text;
             prod.Url = salvarImagem(nomeImagem);
             BD.InsercaoBD_Produto(prod);

@@ -15,6 +15,15 @@ namespace HairProduct
     {
 
         /// <summary>
+        /// Controle GridView1.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+
+        /// <summary>
         /// Controle CategoriaFiltro.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,24 @@ namespace HairProduct
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource filtroMarca;
+
+        /// <summary>
+        /// Controle STATUSfiltro.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList STATUSfiltro;
+
+        /// <summary>
+        /// Controle filtroStatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource filtroStatus;
 
         /// <summary>
         /// Controle txt_nomeproduto.

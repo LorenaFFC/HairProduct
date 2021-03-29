@@ -6,6 +6,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+     <asp:GridView ID="GridView1" runat="server">
+                </asp:GridView>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="border-top: solid; border-color: white">
             <ul class="navbar-nav mr-auto mt-3 mt-lg-2">
@@ -31,7 +34,16 @@
                             SelectCommand="SELECT DISTINCT [Marca] FROM [PRODUTOS]"></asp:SqlDataSource>
                     </div>
                 </li>
+                 <li class="nav-item active" style="margin-left: 30px">
+                    <div class="form-group">
 
+                        <asp:DropDownList class="form-control" ID="STATUSfiltro" runat="server" DataSourceID="filtroStatus" DataTextField="Status" DataValueField="Status">
+                        </asp:DropDownList>
+
+                        <asp:SqlDataSource ID="filtroStatus" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
+                            SelectCommand="SELECT DISTINCT [Status] FROM [PRODUTOS]"></asp:SqlDataSource>
+                    </div>
+                </li>
                 <li>
                     <div class="input-group" style="margin-left: 50px">
                         <asp:TextBox ID="txt_nomeproduto" runat="server" class="form-control mr-sm-2" placeholder="Nome Produto" aria-label="Search"></asp:TextBox>
@@ -55,6 +67,7 @@
 
     </nav>
 
+   
     <div style="text-align:center; 
 position:relative; 
 padding:20px 0;
@@ -70,6 +83,7 @@ font-family: Poppins,sans-serif;
                 <small style="color: #868686;
                              font-size: 16px;
                               margin-left: 10px;">Produtos com preços Imperdíveis</small>
+                
             </h2>
         </strong>
     </div>
@@ -88,12 +102,16 @@ font-family: Poppins,sans-serif;
                                         <img src="<%#Eval("Url") %>" alt="Primeiro Slide" class="img-produto-carrossel">
                                     </td>
                                 </tr>
-                                <tr style="align-items: center">
+                              <tr style="align-items: center">
                                     <td class="produto-nome">
                                         <asp:Label ID="Lbl_NomeProduto" runat="server" Text='<%#Eval("Nome") %>'></asp:Label>
                                         <asp:Label ID="Lbl_PrecoProduto" runat="server" Text='<%#Eval("Preco") %>'></asp:Label>
-                                        <asp:Button ID="BTN_AdicionarCarrinho" runat="server" Text="Adicionar" class="btn btn-success" OnClick="BTN_AdicionarCarrinho_Click" />
                                     </td>
+                                    <tr>
+                                        <td>
+                                            <asp:Button ID="BTN_AdicionarCarrinho" runat="server" Text="Adicionar" class="btn btn-success" OnClick="BTN_AdicionarCarrinho_Click" />
+                                        </td>
+                                    </tr>
                                 </tr>
                             </table>
                         </ItemTemplate>
@@ -113,7 +131,7 @@ font-family: Poppins,sans-serif;
                         <span class="sr-only">Próximo</span>
                     </a>
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" >
                     <asp:Repeater ID="Repeater2" runat="server" EnableViewState="true">
                         <ItemTemplate>
                             <table>
@@ -125,12 +143,16 @@ font-family: Poppins,sans-serif;
                                     </td>
                                     <asp:Literal ID="tablebreak" runat="server"></asp:Literal>
                                 </tr>
-                                <tr>
+                                <tr style="align-items: center">
                                     <td class="produto-nome">
                                         <asp:Label ID="Lbl_NomeProduto" runat="server" Text='<%#Eval("Nome") %>'></asp:Label>
                                         <asp:Label ID="Lbl_PrecoProduto" runat="server" Text='<%#Eval("Preco") %>'></asp:Label>
-                                        <asp:Button ID="BTN_AdicionarCarrinho" runat="server" Text="Adicionar" class="btn btn-success" OnClick="BTN_AdicionarCarrinho_Click" />
                                     </td>
+                                    <tr>
+                                        <td>
+                                            <asp:Button ID="BTN_AdicionarCarrinho" runat="server" Text="Adicionar" class="btn btn-success" OnClick="BTN_AdicionarCarrinho_Click" />
+                                        </td>
+                                    </tr>
                                 </tr>
                         </ItemTemplate>
                         <SeparatorTemplate></SeparatorTemplate>
@@ -157,7 +179,6 @@ font-family: Poppins,sans-serif;
 
 
     <script type="text/javascript">
-
         console.log("asasas" + teste);
         jQuery(document).ready(function () {
             $('#carouselExampleControls').jcarousel({
@@ -166,8 +187,6 @@ font-family: Poppins,sans-serif;
             });
         });
     </script>
-
-
 
 
 

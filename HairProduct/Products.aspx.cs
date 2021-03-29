@@ -34,6 +34,10 @@ namespace HairProduct
             //Inserindo Primeira Linha Marca
             MARCAfiltro.AppendDataBoundItems = true;
             MARCAfiltro.Items.Insert(0, new ListItem(".Selecione Marca."));
+
+            //Inserindo Primeira Linha Status
+            STATUSfiltro.AppendDataBoundItems = true;
+            STATUSfiltro.Items.Insert(0, new ListItem(".Selecione Status."));
         }
         protected void Btn_FiltrarProdutos(object sender, EventArgs e)
         {
@@ -41,20 +45,35 @@ namespace HairProduct
             string nomeCategoria = CategoriaFiltro.SelectedValue.ToString();
             string nomeMarca = MARCAfiltro.SelectedValue.ToString();
             string nomeProduto = txt_nomeproduto.Text;
+            string nomestatus = STATUSfiltro.SelectedValue.ToString();
 
-            if (nomeCategoria==".Selecione Categoria." || nomeMarca== ".Selecione Categoria.")
+            
+            
+            if (nomeCategoria==".Selecione Categoria." || nomeMarca== ".Selecione Marca." || nomestatus == ".Selecione Status.")
             {
-                nomeCategoria = null;
-                nomeMarca = null;
+                nomeCategoria ="";
+                nomeMarca = "";
+                nomestatus = "";
+                                
             }
+            
+            
+
+            
             Connection.GetSqlConnection();
             OperacoesBD bd = new OperacoesBD();
-     
-            Repeater1.DataSource = bd.RetornaProdutosFiltrados(nomeCategoria, nomeMarca, nomeProduto); 
+
+            
+            Repeater1.DataSource = bd.RetornaProdutosFiltrados(nomeCategoria, nomeMarca, nomestatus, nomeProduto); 
             Repeater1.DataBind();
 
             Repeater2.Visible = false;
+            
+            GridView1.DataSource = bd.RetornaProdutosFiltrados(nomeCategoria, nomeMarca, nomestatus, nomeProduto);
+            GridView1.DataBind();
 
+
+            Response.Write("<script> alert('" + nomeMarca + "'); </script>");
 
 
         }
