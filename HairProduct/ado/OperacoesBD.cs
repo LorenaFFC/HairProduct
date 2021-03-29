@@ -10,13 +10,43 @@ namespace HairProduct.ado
 {
     public class OperacoesBD
     {
+        public void InsertIntoT()
+        {
+            /*
+-- Criacao do Tipo
+USE [SalesProducts]
+GO
 
+CREATE TYPE [dbo].[PlanilhaProdutos] AS TABLE(
+	[Produto] [varchar](max) NULL,
+	[Categoria] [varchar](max) NULL,
+	[Marca] [varchar](max) NULL,
+	[Preco] [varchar](max) NULL,
+	[Url] [varchar](max) NULL,
+	[status] [varchar](max) NULL
+)
+GO
+
+-- Criacao da Procedure -- utilizando o tipo Criado
+USE [SalesProducts]
+GO
+CREATE PROCEDURE [dbo].[InsercaoPlanilha]
+  @dt AS dbo.PlanilhaProdutos READONLY
+AS
+BEGIN
+  SET NOCOUNT ON;
+
+  INSERT into dbo.PRODUTOS  SELECT * FROM @dt;
+END
+GO*/
+        }
 
         public void InsercaoBD_Produto(Produto produto)
         {
-            string query = "INSERT INTO SalesProducts.dbo.PRODUTOS (Produto,Categoria,Marca,Status,Preco,Url) VALUES (@Produto,@Categoria,@Marca, @Status, @Preco,@Url)";
+            string query = "INSERT INTO SalesProducts.dbo.PRODUTOS (Produto,Categoria,Marca,Status,Preco,Url) VALUES ( @Produto,@Categoria,@Marca, @Status, @Preco,@Url)";
 
-            SqlParameter[] parameterList = { new SqlParameter("@Produto", produto.Nome),
+            SqlParameter[] parameterList = {  
+                                             new SqlParameter("@Produto", produto.Nome),
                                              new SqlParameter("@Categoria", produto.Categoria),
                                              new SqlParameter("@Marca", produto.Marca),
                                              new SqlParameter("@Marca", produto.Status),
@@ -104,10 +134,10 @@ namespace HairProduct.ado
                 INNER JOIN SalesProducts.dbo.PRODUTOS  PM on (IM.Nome = PM.Produto AND IM.Url = PM.Url)
                 WHERE 
 	                1=1
-	                AND (@nomeCategoria IS NULL OR(PM.CATEGORIA = @nomeCategoria))
-	                AND (@nomeMarca IS NULL OR (PM.MARCA = @nomeMarca)) 
-	                AND (@nomeProduto IS NULL OR (PM.PRODUTO like '%' + @nomeProduto + '%'))
-					AND (@nomeStatus IS NULL OR (PM.STATUS = @nomeStatus));
+	                AND (@nomeCategoria IS NULL OR(@nomeCategoria='') OR(PM.CATEGORIA = @nomeCategoria))
+	                AND (@nomeMarca IS NULL OR(@nomeMarca='') OR (PM.MARCA = @nomeMarca)) 
+	                AND (@nomeProduto IS NULL OR(@nomeProduto='') OR (PM.PRODUTO like '%' + @nomeProduto + '%'))
+					AND (@nomeStatus IS NULL OR(@nomeStatus='') OR (PM.STATUS = @nomeStatus));
                 RETURN 
                 GO
 
